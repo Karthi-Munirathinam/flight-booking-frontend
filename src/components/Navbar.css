@@ -25,3 +25,17 @@
   justify-content: space-between;
   align-items: center;
 }
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.login-register {
+  padding-left: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+/* .avatar{
+    color: #ff934f;
+} */
