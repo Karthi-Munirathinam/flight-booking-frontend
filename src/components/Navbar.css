@@ -1,0 +1,27 @@
+.navbar-container {
+  background-color: #414288f6;
+  color: #ff934f;
+  padding: 0.5rem 1.5rem;
+  border-bottom: 1px solid #bcffc1;
+  box-shadow: 0 4px 5px #211a1e88;
+  z-index: 100;
+}
+.brand {
+  font-size: 1.75rem;
+  font-family: "Righteous", cursive;
+  background-color: #211a1ea6;
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #4d554e;
+  box-shadow: 2px 2px 5px #4d554e;
+}
+.brand-my,
+.fa-plane {
+  color: #d3fad6;
+}
+.nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
