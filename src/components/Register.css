@@ -1,0 +1,93 @@
+.confirmpassword-form:focus,
+.password-register-form:focus,
+.phone-form:focus,
+.email-register-form:focus,
+.lastname-form:focus,
+.firstname-form:focus,
+.confirmpassword-form:active,
+.password-register-form:active,
+.phone-form:active,
+.email-register-form:active,
+.lastname-form:active,
+.firstname-form:active {
+  outline: none;
+  box-shadow: none;
+  border: 2px solid #211a1eb7;
+}
+.password-register-form-container,
+.confirm-password-form-container,
+.phone-form-container,
+.email-register-form-container,
+.lastname-form-container,
+.firstname-form-container {
+  margin-top: 0.25rem;
+}
+.register-btn {
+  background-color: #ff934f;
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.05rem;
+  color: #fff;
+  font-family: "Righteous", cursive;
+}
+.register-btn:active,
+.register-btn:focus {
+  outline: none;
+  box-shadow: none;
+  border: 2px solid #ff6200;
+}
+.register-btn:hover {
+  background-color: #ff8e48;
+  color: #d3fad6;
+}
+.register-container {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.bg-register {
+  background-color: #ff934f;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem 0 0 2rem;
+}
+
+.register-form {
+  min-width: 100%;
+}
+.register-form-container {
+  background-color: #fcfff7;
+  padding: 2rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 2rem 2rem 0;
+}
+.register-row-container {
+  min-height: 70vh;
+}
+.register-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register-company {
+  font-size: 1.45rem;
+  padding: 0.4rem;
+  font-weight: bold;
+  text-align: center;
+  /* font-family: "Righteous", cursive; */
+}
+@media (max-width: 767px) {
+  .bg-register {
+    display: none;
+  }
+  .register-form-container {
+    border-radius: 1rem 1rem 1rem 1rem;
+  }
+}

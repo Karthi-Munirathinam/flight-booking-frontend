@@ -5,6 +5,7 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import LuggageIcon from '@mui/icons-material/Luggage';
 import { useFormik } from 'formik';
+import { Link } from "react-router-dom";
 function Login() {
     const formik = useFormik({
         initialValues: {
@@ -53,7 +54,7 @@ function Login() {
                         <div className="col-md-8 login-form-container">
                             <div className="login-form">
                                 <p className="signup-text text-muted">
-                                    Don't have an account? <span className="sign-up">SIGN UP</span>
+                                    Don't have an account? <Link to="/register" style={{ textDecoration: 'none' }}><span className="sign-up">SIGN UP</span></Link>
                                 </p>
                                 <div className="login-company">
                                     Log in to BookMyTrip

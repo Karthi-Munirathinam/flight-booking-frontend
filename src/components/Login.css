@@ -58,7 +58,6 @@
   width: 100%;
   margin-top: 1rem;
   font-size: 1.1rem;
-  /* font-weight: 500; */
   letter-spacing: 0.05rem;
   color: #fff;
   font-family: "Righteous", cursive;
@@ -66,6 +65,12 @@
 .login-btn:hover {
   background-color: #ff8e48;
   color: #d3fad6;
+}
+.login-btn:active,
+.login-btn:focus {
+  outline: none;
+  box-shadow: none;
+  border: 2px solid #ff6200;
 }
 .email-form:active,
 .password-form:active,

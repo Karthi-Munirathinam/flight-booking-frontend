@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Search from "./components/Search";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -14,8 +15,11 @@ function App() {
       <>
         <Navbar />
         <Switch>
-          <Route path='/login'>
+          <Route path='/login' exact>
             <Login />
+          </Route>
+          <Route path='/register' exact>
+            <Register />
           </Route>
           <Route path='/'>
             <Search />
