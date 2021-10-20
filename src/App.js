@@ -11,7 +11,7 @@ import Login from "./components/Login";
 function App() {
   return (
     <Router>
-      <div>
+      <>
         <Navbar />
         <Switch>
           <Route path='/login'>
@@ -29,7 +29,7 @@ function App() {
         {/* footer */}
         {/* flight seat layout */}
         {/* ticket */}
-      </div>
+      </>
     </Router>
   );
 }
