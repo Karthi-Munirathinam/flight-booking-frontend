@@ -7,13 +7,14 @@
   z-index: 100;
 }
 .brand {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-family: "Righteous", cursive;
   background-color: #211a1ea6;
   padding: 0.25rem 1rem;
   border-radius: 0.5rem;
   border: 1px solid #4d554e;
   box-shadow: 2px 2px 5px #4d554e;
+  color: #ff934f;
 }
 .brand-my,
 .fa-plane {
@@ -39,3 +40,35 @@
 /* .avatar{
     color: #ff934f;
 } */
+@media (max-width: 576px) {
+  .navbar-container {
+    padding: 0.5rem 0.5rem;
+  }
+  .brand {
+    font-size: 1.25rem;
+    padding: 0.25rem 0.5rem;
+  }
+  .login-register {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .avatar {
+    display: none;
+  }
+}
+@media (max-width: 300px) {
+  .navbar-container {
+    padding: 0.25rem 0.25rem;
+  }
+  .brand {
+    font-size: 1rem;
+    padding: 0.25rem 0.25rem;
+  }
+  .login-register {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .avatar {
+    display: none;
+  }
+}
