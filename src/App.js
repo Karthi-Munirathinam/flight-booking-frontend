@@ -8,6 +8,8 @@ import {
 import Search from "./components/Search";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import ForgotPassword from "./components/ForgotPassword";
+import ForgotPasswordReset from "./components/ForgotPasswordReset";
 
 function App() {
   return (
@@ -20,6 +22,12 @@ function App() {
           </Route>
           <Route path='/register' exact>
             <Register />
+          </Route>
+          <Route path='/forgotpassword' exact>
+            <ForgotPassword />
+          </Route>
+          <Route path='/resetpassword' exact>
+            <ForgotPasswordReset />
           </Route>
           <Route path='/'>
             <Search />

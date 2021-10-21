@@ -1,11 +1,8 @@
 import React from 'react';
-import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import LuggageIcon from '@mui/icons-material/Luggage';
 import { useFormik } from 'formik';
 import { Link } from "react-router-dom";
-import './Register.css'
+import './Register.css';
+import Sidecontent from './Sidecontent';
 
 function Register() {
     const formik = useFormik({
@@ -34,7 +31,7 @@ function Register() {
                 errors.phone = "Required"
             }
             if (!values.password) {
-               errors.password = "Required"
+                errors.password = "Required"
             }
             if (!values.confirmpassword) {
                 errors.confirmpassword = "Required"
@@ -47,31 +44,14 @@ function Register() {
         onSubmit: (values) => {
             console.log(values.firstname);
         }
-    })
+    });
     return (
         <div className="container register-container">
             <div className="row register-row">
                 <div className="col-lg-8 text-center">
                     <div className="row register-row-container">
                         <div className="col-4 bg-register">
-                            <div className="row side-content mb-2">
-                                <div>
-                                    <VerifiedUserOutlinedIcon style={{ color: '#fff', fontSize: 40 }} />
-                                </div>
-                                <div className="register-side-content">Trusted by over 100 million Indians</div>
-                            </div>
-                            <div className="row side-content mb-2">
-                                <CreditCardIcon style={{ color: '#fff', fontSize: 40 }} />
-                                <div className="register-side-content">Fast & secure payments</div>
-                            </div>
-                            <div className="row side-content mb-2">
-                                <MonetizationOnOutlinedIcon style={{ color: '#fff', fontSize: 40 }} />
-                                <div className="register-side-content">Save on every booking</div>
-                            </div>
-                            <div className="row side-content">
-                                <LuggageIcon style={{ color: '#fff', fontSize: 40 }} />
-                                <div className="register-side-content">Manage trips, get fare alerts and predictions</div>
-                            </div>
+                            <Sidecontent />
                         </div>
                         <div className="col-md-8 register-form-container">
                             <div className="register-form">

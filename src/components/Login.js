@@ -1,11 +1,8 @@
 import React from 'react'
 import './Login.css';
-import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import LuggageIcon from '@mui/icons-material/Luggage';
 import { useFormik } from 'formik';
 import { Link } from "react-router-dom";
+import Sidecontent from './Sidecontent';
 function Login() {
     const formik = useFormik({
         initialValues: {
@@ -32,7 +29,7 @@ function Login() {
                 <div className="col-lg-8 text-center">
                     <div className="row login-row-container">
                         <div className="col-4 bg-login">
-                            <div className="row side-content mb-2">
+                            {/* <div className="row side-content mb-2">
                                 <div>
                                     <VerifiedUserOutlinedIcon style={{ color: '#fff', fontSize: 40 }} />
                                 </div>
@@ -49,7 +46,8 @@ function Login() {
                             <div className="row side-content">
                                 <LuggageIcon style={{ color: '#fff', fontSize: 40 }} />
                                 <div className="login-side-content">Manage trips, get fare alerts and predictions</div>
-                            </div>
+                            </div> */}
+                            <Sidecontent />
                         </div>
                         <div className="col-md-8 login-form-container">
                             <div className="login-form">
@@ -76,7 +74,7 @@ function Login() {
                                         }
                                         <input type="password" value={formik.values.password} onChange={formik.handleChange} className="password-form form-control" id="password" name="password" />
                                     </div>
-                                    <div className="col-12 text-center mt-2">Forgot Password?</div>
+                                    <Link to='/forgotpassword' style={{ textDecoration: 'none' }}><div className="col-12 text-center mt-2">Forgot Password?</div></Link>
                                     <div className="col-12">
                                         <input type="submit" value="LOGIN" className="btn login-btn" />
                                     </div>
