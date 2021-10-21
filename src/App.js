@@ -6,11 +6,11 @@ import {
   Route
 } from "react-router-dom";
 import Search from "./components/Search";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import ForgotPassword from "./components/ForgotPassword";
-import ForgotPasswordReset from "./components/ForgotPasswordReset";
-import EmailVerified from "./components/EmailVerified";
+import Login from "./components/SignIN_SignUP_components/Login";
+import Register from "./components/SignIN_SignUP_components/Register";
+import ForgotPassword from "./components/SignIN_SignUP_components/ForgotPassword";
+import ForgotPasswordReset from "./components/SignIN_SignUP_components/ForgotPasswordReset";
+import EmailVerified from "./components/SignIN_SignUP_components/EmailVerified";
 
 function App() {
   return (
