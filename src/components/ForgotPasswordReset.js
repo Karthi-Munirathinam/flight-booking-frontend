@@ -41,13 +41,13 @@ function ForgotPasswordReset() {
                         <div className="col-md-8 register-form-container">
                             {
                                 resetPassword ? <ConfirmResetPassword change={setResetPassword} /> : (
-                                    <div className="register-form">
+                                    <div className="register-form p-3">
                                         <div className="register-company">
-                                            Reset your BookMyTrip Password !
+                                            Reset your BookMyTrip Password!
                                         </div>
-                                        <p className="text-center text-muted mt-2">Associated with Email ID <b>email</b></p>
+                                        <p className="text-center text-muted mt-2 mb-4">Associated with Email ID <b>email</b></p>
                                         <form onSubmit={formik.handleSubmit}>
-                                            <div className="col-12 password-register-form-container">
+                                            <div className="password-register-form-container mb-3">
                                                 <label className="text-muted label-text" htmlFor='password'>
                                                     New Password
                                                 </label>{
@@ -55,7 +55,7 @@ function ForgotPasswordReset() {
                                                 }
                                                 <input type="password" value={formik.values.password} onChange={formik.handleChange} className="password-register-form form-control" id="password" name="password" />
                                             </div>
-                                            <div className="col-12 confirm-password-form-container">
+                                            <div className="confirm-password-form-container">
                                                 <label className="text-muted label-text" htmlFor='confirmpassword'>
                                                     Re-enter new password
                                                 </label>{
@@ -63,7 +63,7 @@ function ForgotPasswordReset() {
                                                 }
                                                 <input type="password" value={formik.values.confirmpassword} onChange={formik.handleChange} className="confirmpassword-form form-control" id="confirmpassword" name="confirmpassword" />
                                             </div>
-                                            <div className="col-12">
+                                            <div className="mt-3">
                                                 <input type="submit" value="CONTINUE" className="btn register-btn" />
                                             </div>
                                         </form>

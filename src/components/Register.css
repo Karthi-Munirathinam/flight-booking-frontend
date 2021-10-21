@@ -70,6 +70,8 @@
 }
 .register-row-container {
   min-height: 70vh;
+  border-radius: 2rem;
+  box-shadow: 0.25rem 0.25rem 2.5rem #211a1e46;
 }
 .register-row {
   display: flex;
@@ -83,6 +85,22 @@
   text-align: center;
   /* font-family: "Righteous", cursive; */
 }
+.side-content {
+  display: flex;
+  /* flex-direction: row; */
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  /* margin-bottom: 1.15rem; */
+  padding: 1rem;
+}
+.register-side-content {
+  padding-left: 0.5rem;
+  text-align: left;
+}
 @media (max-width: 767px) {
   .bg-register {
     display: none;
@@ -90,4 +108,8 @@
   .register-form-container {
     border-radius: 1rem 1rem 1rem 1rem;
   }
+}
+.temp-content {
+  font-size: 0.9rem;
+  /* text-align: center; */
 }

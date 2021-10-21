@@ -34,16 +34,16 @@ function ForgotPassword() {
                         <div className="col-md-8 register-form-container">
                             {
                                 forgotPasswordLink ? <ResetPasswordLink resetLink={setForgotPasswordLink} email={formik.values.email} /> : (
-                                    <div className="register-form">
-                                        <p className="signup-text text-muted">
+                                    <div className="register-form p-2">
+                                        <p className="signup-text text-muted mb-3">
                                             Remember your password? <Link to="/login" style={{ textDecoration: 'none' }}><span className="sign-up">SIGN IN</span></Link>
                                         </p>
                                         <div className="register-company">
                                             Forgot your BookMyTrip Password !
                                         </div>
-                                        <p className="text-center mt-2">Simply enter your <b>Email ID</b> here & we'll send you a link to reset the password</p>
+                                        <p className="text-center mt-3 mb-4">Simply enter your <b>Email ID</b> here & we'll send you a link to reset the password</p>
                                         <form onSubmit={formik.handleSubmit}>
-                                            <div className="col-12 email-register-form-container">
+                                            <div className="col-12 mb-3 email-register-form-container">
                                                 <label className="text-muted label-text" htmlFor='email'>
                                                     Email
                                                 </label>{

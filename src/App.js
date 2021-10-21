@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import ForgotPassword from "./components/ForgotPassword";
 import ForgotPasswordReset from "./components/ForgotPasswordReset";
+import EmailVerified from "./components/EmailVerified";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path='/resetpassword' exact>
             <ForgotPasswordReset />
+          </Route>
+          <Route path='/verifyemail' exact>
+            <EmailVerified />
           </Route>
           <Route path='/'>
             <Search />

@@ -25,6 +25,8 @@
 }
 .login-row-container {
   min-height: 70vh;
+  border-radius: 2rem;
+  box-shadow: 0.25rem 0.25rem 2.5rem #211a1e46;
 }
 .login-row {
   display: flex;
@@ -93,7 +95,7 @@
   padding: 1rem;
 }
 .login-side-content {
-  padding-left: 0.4rem;
+  padding-left: 0.6rem;
 }
 @media (max-width: 767px) {
   .bg-login {
