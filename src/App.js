@@ -12,6 +12,7 @@ import Register from "./components/SignIN_SignUP_components/Register";
 import ForgotPassword from "./components/SignIN_SignUP_components/ForgotPassword";
 import ForgotPasswordReset from "./components/SignIN_SignUP_components/ForgotPasswordReset";
 import EmailVerified from "./components/SignIN_SignUP_components/EmailVerified";
+import BookingPage from "./components/Booking_components/BookingPage";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path='/flights'>
             <SearchResults />
+          </Route>
+          <Route path='/booking'>
+            <BookingPage />
           </Route>
           <Route path='/'>
             <Search />
