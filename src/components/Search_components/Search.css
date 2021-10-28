@@ -4,6 +4,9 @@
   justify-content: space-around;
   flex-direction: row;
 }
+.search-container {
+  min-height: calc(100vh - 29vh);
+}
 .search-button-container {
   display: flex;
   justify-content: center;

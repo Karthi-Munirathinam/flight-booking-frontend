@@ -13,6 +13,7 @@ import ForgotPassword from "./components/SignIN_SignUP_components/ForgotPassword
 import ForgotPasswordReset from "./components/SignIN_SignUP_components/ForgotPasswordReset";
 import EmailVerified from "./components/SignIN_SignUP_components/EmailVerified";
 import BookingPage from "./components/Booking_components/BookingPage";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <Search />
           </Route>
         </Switch>
+        <Footer />
         {/* navbar -> company and login/register/forgot password*/}
         {/* search flights */}
         {/* search results */}
