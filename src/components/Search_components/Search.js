@@ -121,7 +121,7 @@ function Search() {
                                 </div>
                                 <div className='row'>
                                     <div className='col-12'>
-                                        <input type="number" className='form-control ' />
+                                        <input type="number" className='form-control' min="1" defaultValue="1" />
                                     </div>
                                 </div>
                             </div>

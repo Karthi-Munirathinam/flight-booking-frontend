@@ -1,0 +1,30 @@
+.search-results-search-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  background-color: #ff934f;
+  /* background-color: #e1e1e1; */
+  padding: 1rem 0.5rem;
+  margin-top: 1rem;
+}
+.search-results-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+.search-filter-container {
+  background-color: #fff;
+  min-height: 60vh;
+  border-radius: 0.5rem;
+  border: 2px solid #e1e1e1;
+}
+.result-card-container {
+  background-color: aliceblue;
+  padding: 1rem 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
