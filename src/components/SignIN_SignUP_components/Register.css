@@ -113,3 +113,6 @@
   font-size: 0.9rem;
   /* text-align: center; */
 }
+.error-container {
+  min-height: calc(100vh - 31.5vh);
+}

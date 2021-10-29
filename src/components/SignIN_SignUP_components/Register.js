@@ -4,8 +4,23 @@ import { Link } from "react-router-dom";
 import './Register.css';
 import Sidecontent from './Sidecontent';
 import AskForEmailVerification from './AskForEmailVerification';
+import axios from '../Connection';
 
 function Register() {
+    const [userExists, setuserExists] = useState(false);
+    const [activated, setActivated] = useState(false);
+    const resendVerification = async () => {
+        try {
+            let verify = await axios.post('/verifyaccount', {
+                email: formik.values.email.toLowerCase()
+            })
+            if (verify.data.userexists) {
+                setActivated(true);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const formik = useFormik({
         initialValues: {
             firstname: '',
@@ -43,8 +58,29 @@ function Register() {
             return errors;
         },
         onSubmit: (values) => {
-            console.log(values.firstname);
-            setAskForEmailVerification(true);
+            const postData = async () => {
+                try {
+                    let user = await axios.post('/register', {
+                        firstName: values.firstname,
+                        lastName: values.lastname,
+                        email: values.email.toLowerCase(),
+                        phone: values.phone,
+                        password: values.password
+                    });
+                    if (user.data.userexists && user.data.useractivated) {
+                        setuserExists(true);
+                        setActivated(true);
+                    } else if (user.data.userexists && !user.data.useractivated) {
+                        setuserExists(true);
+                        setActivated(false);
+                    } else {
+                        setAskForEmailVerification(true);
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            postData();
         }
     });
     const [askForEmailVerification, setAskForEmailVerification] = useState(false);
@@ -57,7 +93,7 @@ function Register() {
                             <Sidecontent />
                         </div>
                         <div className="col-md-8 register-form-container">{
-                            askForEmailVerification ? <AskForEmailVerification handleEmail={setAskForEmailVerification} mail={formik.values.email} /> : (
+                            askForEmailVerification ? <AskForEmailVerification resendVerification={resendVerification} handleEmail={setAskForEmailVerification} mail={formik.values.email} /> : (
                                 <div className="register-form">
                                     <p className="signup-text text-muted">
                                         Already have an account? <Link to="/login" style={{ textDecoration: 'none' }}><span className="sign-up">SIGN IN</span></Link>
@@ -114,6 +150,14 @@ function Register() {
                                             }
                                             <input type="password" value={formik.values.confirmpassword} onChange={formik.handleChange} className="confirmpassword-form form-control" id="confirmpassword" name="confirmpassword" />
                                         </div>
+                                        {userExists ? (<div className="col-12 text-center mt-2">{
+                                            activated ? (
+                                                <span className="errors">User Already Exists try <Link to='/login'>SIGN IN</Link></span>
+                                            ) : (
+                                                <span className="errors">Email already registered! Check your mail for activation link or <span className="btn" style={{ color: "red" }} onClick={resendVerification}>Resend activation link</span></span>
+                                            )
+                                        }
+                                        </div>) : null}
                                         <div className="col-12">
                                             <input type="submit" value="REGISTER" className="btn register-btn" />
                                         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-function AskForEmailVerification({ handleEmail, mail }) {
+function AskForEmailVerification({ handleEmail, mail, resendVerification }) {
     const handleEmailVerification = () => {
         handleEmail(false);
     }
@@ -22,7 +22,7 @@ function AskForEmailVerification({ handleEmail, mail }) {
                     Do check the spam folder in case you don't find the Email in your regular Inbox
                 </p>
                 <p className="text-muted temp-content">
-                    If you still don't find the Email from us, please click this link to <b>Resend Verification Link</b>
+                    If you still don't find the Email from us, please click this link to <span style={{ cursor: "pointer" }} onClick={() => resendVerification()}><b>Resend Verification Link</b></span>
                 </p>
                 <div>
                     <Link to="/"><input type="button" value="Go To Homepage" onClick={handleEmailVerification} className="btn login-btn" /></Link>
