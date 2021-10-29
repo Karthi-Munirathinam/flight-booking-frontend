@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import './Register.css';
 import Sidecontent from './Sidecontent';
 import ResetPasswordLink from './ResetPasswordLink';
+import axios from '../Connection'
+
 
 function ForgotPassword() {
+    const [userexists, setUserExists] = useState(true);
     const formik = useFormik({
         initialValues: {
             email: ''
@@ -18,8 +21,25 @@ function ForgotPassword() {
             return errors;
         },
         onSubmit: (values) => {
-            console.log(values.email);
-            setForgotPasswordLink(true);
+            const forgotPasswordSubmit = async () => {
+                try {
+                    // setIsLoading(true)
+                    let data = await axios.post('/forgotpassword', {
+                        email: values.email
+                    });
+                    if (!data.data.exists) {
+                        setUserExists(false);
+                    } else if (data.data.exists) {
+                        setForgotPasswordLink(true);
+                    }
+                    // setIsLoading(false);
+                } catch (error) {
+                    // setIsLoading(false);
+                    console.log(error);
+                }
+            }
+            forgotPasswordSubmit()
+
         }
     })
     const [forgotPasswordLink, setForgotPasswordLink] = useState(false);
@@ -51,6 +71,14 @@ function ForgotPassword() {
                                                 }
                                                 <input type="email" value={formik.values.email} onChange={formik.handleChange} className="email-register-form form-control" id="email" name="email" />
                                             </div>
+                                            {
+                                                userexists ? null : (
+                                                    <div className="col-12 text-center errors">
+                                                        <div>User doesn't exist, please <Link to="/register" className="text-decoration-none">register</Link></div>
+                                                    </div>
+                                                )
+                                            }
+
                                             <div className="col-12">
                                                 <input type="submit" value="CONTINUE" className="btn register-btn" />
                                             </div>

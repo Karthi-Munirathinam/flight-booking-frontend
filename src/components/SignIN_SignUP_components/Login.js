@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Login.css';
 import { useFormik } from 'formik';
 import { Link } from "react-router-dom";
 import Sidecontent from './Sidecontent';
+import axios from '../Connection';
+import { useHistory } from 'react-router-dom';
 function Login() {
+    const history = useHistory();
+    useEffect(() => {
+        let token = window.localStorage.getItem("app-token");
+        if (token) {
+            history.push('/')
+        }
+    }, [])
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -20,7 +29,23 @@ function Login() {
             return errors;
         },
         onSubmit: (values) => {
-            console.log(values.email, values.password)
+            const login = async () => {
+                try {
+                    // setIsLoading(true);
+                    console.log(values.email, values.password)
+                    let token = await axios.post('/login', {
+                        email: values.email,
+                        password: values.password
+                    });
+                    window.localStorage.setItem("app-token", token.data.token);
+                    // setIsLoading(false);
+                    history.push('/')
+                } catch (error) {
+                    // setIsLoading(false);
+                    console.log(error)
+                }
+            }
+            login()
         }
     })
     return (
@@ -29,24 +54,6 @@ function Login() {
                 <div className="col-lg-8 text-center">
                     <div className="row login-row-container">
                         <div className="col-4 bg-login">
-                            {/* <div className="row side-content mb-2">
-                                <div>
-                                    <VerifiedUserOutlinedIcon style={{ color: '#fff', fontSize: 40 }} />
-                                </div>
-                                <div className="login-side-content">Trusted by over 100 million Indians</div>
-                            </div>
-                            <div className="row side-content mb-2">
-                                <CreditCardIcon style={{ color: '#fff', fontSize: 40 }} />
-                                <div className="login-side-content">Fast & secure payments</div>
-                            </div>
-                            <div className="row side-content mb-2">
-                                <MonetizationOnOutlinedIcon style={{ color: '#fff', fontSize: 40 }} />
-                                <div className="login-side-content">Save on every booking</div>
-                            </div>
-                            <div className="row side-content">
-                                <LuggageIcon style={{ color: '#fff', fontSize: 40 }} />
-                                <div className="login-side-content">Manage trips, get fare alerts and predictions</div>
-                            </div> */}
                             <Sidecontent />
                         </div>
                         <div className="col-md-8 login-form-container">

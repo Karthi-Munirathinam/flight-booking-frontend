@@ -1,11 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import './Register.css';
 import Sidecontent from './Sidecontent';
 import ConfirmResetPassword from './ConfirmResetPassword';
 import EmailLinkExpires from './EmailLinkExpires';
+import { useHistory, useLocation } from 'react-router-dom';
+import axios from '../Connection';
+
+const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+}
 
 function ForgotPasswordReset() {
+    const history = useHistory();
+    let query = useQuery();
+    const [resetPassword, setResetPassword] = useState(false);
+    const [linkExpires, setLinkExpires] = useState(false);
+    const [userData, setUserData] = useState({});
+    useEffect(() => {
+        const checkQuery = async () => {
+            try {
+                // setIsLoading(true);
+                let data = await axios.post('/resetpassword', {
+                    tk: query.get("tk")
+                })
+                console.log(data.data.user)
+                if (data.data.token === "valid") {
+                    setUserData(data.data.user)
+                } else {
+                    setLinkExpires(true);
+                }
+                console.log(userData)
+                // setIsLoading(false);
+            } catch (error) {
+                // setIsLoading(false);
+                console.log(error)
+            }
+        }
+        checkQuery()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     const formik = useFormik({
         initialValues: {
             password: '',
@@ -26,13 +60,29 @@ function ForgotPasswordReset() {
             return errors;
         },
         onSubmit: (values) => {
-            console.log(values.password);
-            setResetPassword(true);
-            setLinkExpires(true);
+            const changePassword = async () => {
+                try {
+                    // setIsLoading(true);
+                    await axios.post('/changepassword', {
+                        userid: userData._id,
+                        password: values.password
+                    });
+                    setResetPassword(true);
+                    setLinkExpires(true);
+                    window.alert('Password changed successfully!');
+                    history.push('/login')
+                    // setIsLoading(false);
+                } catch (error) {
+                    // setIsLoading(false);
+                    console.log(error);
+                }
+            }
+            changePassword();
+
+
         }
     })
-    const [resetPassword, setResetPassword] = useState(false);
-    const [linkExpires, setLinkExpires] = useState(false);
+
     return (
         <div className="container login-container">
             <div className="row register-row">
@@ -49,7 +99,7 @@ function ForgotPasswordReset() {
                                             <div className="register-company">
                                                 Reset your BookMyTrip Password!
                                             </div>
-                                            <p className="text-center text-muted mt-2 mb-4">Associated with Email ID <b>email</b></p>
+                                            <p className="text-center text-muted mt-2 mb-4">Associated with Email ID <b>{userData.email}</b></p>
                                             <form onSubmit={formik.handleSubmit}>
                                                 <div className="password-register-form-container mb-3">
                                                     <label className="text-muted label-text" htmlFor='password'>

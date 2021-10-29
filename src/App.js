@@ -36,10 +36,10 @@ function App() {
           <Route path='/verifyemail' exact>
             <EmailVerified />
           </Route>
-          <Route path='/flights'>
+          <Route path='/flights' exact>
             <SearchResults />
           </Route>
-          <Route path='/booking'>
+          <Route path='/booking' exact>
             <BookingPage />
           </Route>
           <Route path='/'>
