@@ -5,8 +5,27 @@ import BookingStep from './BookingStep';
 import BookingTravellerDetails from './BookingTravellerDetails';
 import FareSummary from './FareSummary';
 import Payment from './Payment';
+import { useLocation } from 'react-router-dom';
+import axios from '../Connection';
+
+const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+}
 
 function BookingPage() {
+    let query = useQuery();
+    // const [flightsData, setFlightsData] = useState([]);
+    const queryDetails = {
+        from: query.get('from'),
+        to: query.get('to'),
+        startDate: query.get('sdate'),
+        returnDate: query.get('rdate'),
+        travellers: query.get('p'),
+        type: query.get('type'),
+        fcode: query.get('fcode'),
+        tcode: query.get('tcode'),
+        flightno:query.get('fno')
+    }
     const steps = [
         'Review',
         'Traveller Details',

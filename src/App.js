@@ -47,9 +47,9 @@ function App() {
           </Route>
         </Switch>
         <Footer />
-        {/* navbar -> company and login/forgot password*/}
-        {/* search flights */}
-        {/* search results */}
+        {/* navbar*/}
+        {/*  */}
+        {/*  */}
         {/* booking */}
         {/* payment */}
         {/* flight seat layout */}

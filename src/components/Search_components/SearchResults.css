@@ -28,3 +28,8 @@
   align-items: center;
   text-align: center;
 }
+@media (max-width: 750px) {
+  .extra-title {
+    display: none;
+  }
+}
