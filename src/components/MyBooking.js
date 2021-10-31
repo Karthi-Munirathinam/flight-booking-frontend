@@ -49,11 +49,18 @@ function MyBooking() {
                                 </div>
                                 <div className="row">
                                     {
-                                        allBookings[0]?.mybookings.filter(eachdetail => {
-                                            return eachdetail.bookingstatus === true
-                                        }).map(each => {
-                                            return <TicketCard allBookings={each} />
-                                        })
+                                        allBookings[0]?.mybookings ? (
+                                            allBookings[0]?.mybookings.filter(eachdetail => {
+                                                return eachdetail.bookingstatus === true
+                                            }).map(each => {
+                                                return <TicketCard allBookings={each} />
+                                            })
+                                        ) : (
+                                            <h4 className='col-md-12' style={{ color: '#ff934f', minHeight: "53vh" }}>
+                                                No Bookings Found..
+                                            </h4>
+                                        )
+
                                     }
                                 </div>
                             </div>

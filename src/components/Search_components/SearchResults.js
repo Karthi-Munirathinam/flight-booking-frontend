@@ -62,9 +62,16 @@ function SearchResults() {
                                 {/* <div className='col-md-3'>
                                     <SearchResultsSidebar flightsData={flightsData} />
                                 </div> */}
-                                <div className='col-md-12'>
-                                    <SearchResultsCard flightsData={flightsData} queryDetails={queryDetails} />
-                                </div>
+                                {
+                                    flightsData.length > 0 ? (
+                                        <div className='col-md-12'>
+                                            <SearchResultsCard flightsData={flightsData} queryDetails={queryDetails} />
+                                        </div>
+                                    ) : <h4 className='col-md-12' style={{ color: '#ff934f', minHeight: "53vh" }}>
+                                        No Flights Found..
+                                    </h4>
+                                }
+
                             </div>
                         </div>
                     </>

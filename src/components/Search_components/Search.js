@@ -75,7 +75,7 @@ function Search() {
                         </div>
                         <div className="row search-input-container p-2 mt-3">
                             <form className='col-12' onSubmit={formik.handleSubmit}>
-                                <div className='row pl-4'>
+                                {/* <div className='row pl-4'>
                                     <div className='col-12'>
                                         <div className="text-left search-radio-container">
                                             <div className='radio-container pr-3'>
@@ -88,7 +88,7 @@ function Search() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="row">
                                     <div className='col-lg-5 search-from-container'>
                                         <div className='from-container col-6'>
