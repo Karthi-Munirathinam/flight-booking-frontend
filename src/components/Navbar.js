@@ -5,13 +5,16 @@ import "./Navbar.css";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Navbar({ signedIn, setSignedIn }) {
+  const history = useHistory()
   const handlelogout = () => {
     let lout = window.confirm('Are you sure to Log out ?')
     if (lout) {
       window.localStorage.removeItem("app-token");
       setSignedIn(false)
+      history.push('/')
     }
   }
   useEffect(() => {
