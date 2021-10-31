@@ -30,6 +30,7 @@ function SearchResults() {
                     to: query.get('tcode'),
                 })
                 setFlightsData([...flights.data.flightdetails])
+                console.log(flights.data.flightdetails)
 
             } catch (error) {
                 console.log(error);

@@ -14,6 +14,7 @@ import ForgotPasswordReset from "./components/SignIN_SignUP_components/ForgotPas
 import EmailVerified from "./components/SignIN_SignUP_components/EmailVerified";
 import BookingPage from "./components/Booking_components/BookingPage";
 import Footer from "./components/Footer";
+import Ticket from "./components/Ticket";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path='/booking' exact>
             <BookingPage />
+          </Route>
+          <Route path='/ticket' exact>
+            <Ticket />
           </Route>
           <Route path='/'>
             <Search />

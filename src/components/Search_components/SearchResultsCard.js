@@ -16,8 +16,8 @@ function SearchResultsCard({ flightsData, queryDetails }) {
                 <div className='col-md-2 text-muted extra-title'></div>
             </div>
             {
-                flightsData[0]?.destination?.map(each => {
-                    return <ResultCard key={each.flightno} details={each} queryDetails={queryDetails} />
+                flightsData?.map(each => {
+                    return <ResultCard key={each.destination?.flightno} details={each.destination} queryDetails={queryDetails} />
                 })
             }
 

@@ -1,11 +1,11 @@
 import React from 'react'
 
 function SearchResultsSidebar({ flightsData }) {
-    const totalAirlines = flightsData[0]?.destination.map(each => {
-        return each.airline
+    const totalAirlines = flightsData?.map(each => {
+        return each.destination.airline
     })
-    const stopsDetails = flightsData[0]?.destination.map(each => {
-        return each.stop
+    const stopsDetails = flightsData?.map(each => {
+        return each.destination.stop
     })
     const stops = [...new Set(stopsDetails)];
     const airlines = [...new Set(totalAirlines)];
@@ -13,7 +13,7 @@ function SearchResultsSidebar({ flightsData }) {
         <div className='search-filter-container row'>
             <div className='col-12'>
                 <div className='row'>
-                    <p className='col-12'>52 of {flightsData[0]?.destination.length} flights <span>See all</span></p>
+                    <p className='col-12'>52 of {flightsData?.length} flights <span>See all</span></p>
                 </div>
                 <div className='row'>
                     <p className='col-12'>Airlines</p>
@@ -44,8 +44,6 @@ function SearchResultsSidebar({ flightsData }) {
                             </div>
                         })
                     }
-
-
                 </div>
             </div>
         </div>

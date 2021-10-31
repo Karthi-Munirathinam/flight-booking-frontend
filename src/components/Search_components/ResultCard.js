@@ -26,7 +26,7 @@ function ResultCard({ details, queryDetails }) {
                     <small className='col-12 text-center'>{details.to}</small>
                 </div>
             </div>
-            <div className='col-2'>&#8377; {details.fares[0]?.totalfare}</div>
+            <div className='col-2'>&#8377; {details.totalfare}</div>
             <div className='col-md-2'>
                 <div className='row'>
                     <button className='col-12 btn btn-danger' onClick={() => handlebooking()}>Book</button>
