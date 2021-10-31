@@ -14,6 +14,7 @@ function BookingTravellerDetails({ flightsData, queryDetails, pnr, nextStep, pho
 
     const handleCurrentvalue = async () => {
         try {
+            console.log(travellers, travellers.length, travellersCount - 1)
             let token = window.localStorage.getItem("app-token");
             if (travellers.length >= travellersCount - 1) {
                 setTravellersDetailError(false)
@@ -165,7 +166,7 @@ function BookingTravellerDetails({ flightsData, queryDetails, pnr, nextStep, pho
                                                             </th>
                                                             <td><input type="text" name="lastname" className='form-control' value={formik.values.lastname} onChange={formik.handleChange} /></td>
                                                             <td><input type="text" name="nationality" className='form-control' value={formik.values.nationality} onChange={formik.handleChange} /></td>
-                                                            <td><input type="button" value="add" onClick={formik.handleSubmit} className='btn btn-success' disabled={disableAdd} /></td>
+                                                            <td><input type="submit" value="add" onClick={formik.handleSubmit} className='btn btn-success' disabled={disableAdd} /></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -181,7 +182,7 @@ function BookingTravellerDetails({ flightsData, queryDetails, pnr, nextStep, pho
                             <div className='row mt-4'>{
                                 travellersDetailError ? <div className='errors col-12 text-center mb-2'>Please fill travellers details.</div> : null
                             }
-                                <button className='col-12 btn btn-danger' onClick={() => handleCurrentvalue()}>Pay securely</button>
+                                <button className='col-12 btn btn-danger' onClick={() => handleCurrentvalue()} disabled={!disableAdd}>Pay securely</button>
                             </div>
                         </div>
                     </>
