@@ -85,3 +85,9 @@
   right: 0;
   margin-top: 2rem;
 }
+.logout-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #ff934f;
+}

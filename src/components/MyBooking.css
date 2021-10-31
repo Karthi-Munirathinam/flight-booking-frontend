@@ -1,0 +1,9 @@
+.my-booking-container {
+  margin-top: 3rem;
+  min-height: 71vh;
+}
+.ticket-card-row-container {
+  background-color: aliceblue;
+  padding: 1rem;
+  border-radius: 1rem;
+}

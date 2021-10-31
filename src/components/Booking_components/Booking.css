@@ -4,18 +4,9 @@
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
   color: #f55e00 !important;
 }
-/* .label-content {
-  color: #fff !important;
-} */
+
 .stepper-container {
   margin-top: 2rem;
-  /* background: rgb(255, 0, 0);
-  background: linear-gradient(
-    240deg,
-    rgba(0, 217, 255, 0.493) 0%,
-    rgba(0, 89, 255, 0.459) 70%
-  ); */
-  /* padding: 0.5rem; */
   color: #ccc !important;
   z-index: 1000;
 }
@@ -30,15 +21,11 @@
   border-radius: 1rem;
   margin-top: 2rem;
   box-shadow: 0.5rem 0.5rem 1rem #bbb;
-  /* width: 100%; */
 }
 .fare-content {
   padding: 0.5rem;
 }
 .dot {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   color: #ff934f;
 }
 .review-title-row,
@@ -55,8 +42,8 @@
   border-radius: 1rem;
   margin-top: 2rem;
   box-shadow: 0.5rem 0.5rem 1rem #bbb;
-  /* width: 100%; */
-  margin-right: 1rem;
+  width: 100%;
+  margin-right: 3rem;
 }
 .contact-details-container {
   background-color: #fff;
@@ -122,4 +109,22 @@
   justify-content: center;
   align-items: center;
   /* min-height: 20vh; */
+}
+.margin-container {
+  margin-right: 1rem;
+}
+@media (max-width: 768px) {
+  /* .review-container, */
+  /* .traveller-container, */
+  /* .contact-details-container, */
+  /* .traveller-details-container, */
+  .margin-container {
+    margin-right: 0 !important;
+    padding-right: 0;
+    width: 100%;
+  }
+  .margin-container {
+    margin-right: 0 !important;
+    /* width: 100%; */
+  }
 }

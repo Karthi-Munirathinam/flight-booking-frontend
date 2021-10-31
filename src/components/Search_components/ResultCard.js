@@ -1,10 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 function ResultCard({ details, queryDetails }) {
     const history = useHistory();
+    
     const handlebooking = () => {
-        history.push(`/booking?fcode=${queryDetails.fcode}&tcode=${queryDetails.tcode}&from=${queryDetails.from}&to=${queryDetails.to}&p=${queryDetails.travellers}&sdate=${queryDetails.startDate}&rdate=${queryDetails.returnDate}&type=O&fno=${details.flightno}`)
+        let token = window.localStorage.getItem('app-token')
+        if (token) {
+            history.push(`/booking?fcode=${queryDetails.fcode}&tcode=${queryDetails.tcode}&from=${queryDetails.from}&to=${queryDetails.to}&p=${queryDetails.travellers}&sdate=${queryDetails.startDate}&rdate=${queryDetails.returnDate}&type=O&fno=${details.flightno}`)
+        } else {
+            toast.error('Please login to book tickets!');
+        }
     }
     return (
         <div className='row result-card-container mb-2'>
@@ -32,6 +39,8 @@ function ResultCard({ details, queryDetails }) {
                     <button className='col-12 btn btn-danger' onClick={() => handlebooking()}>Book</button>
                 </div>
             </div>
+            <Toaster position="top-center"
+                reverseOrder={false} />
         </div>
     )
 }

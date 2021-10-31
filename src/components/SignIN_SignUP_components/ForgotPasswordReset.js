@@ -6,6 +6,7 @@ import ConfirmResetPassword from './ConfirmResetPassword';
 import EmailLinkExpires from './EmailLinkExpires';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from '../Connection';
+import Loading from '../Loading';
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -15,12 +16,13 @@ function ForgotPasswordReset() {
     const history = useHistory();
     let query = useQuery();
     const [resetPassword, setResetPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [linkExpires, setLinkExpires] = useState(false);
     const [userData, setUserData] = useState({});
     useEffect(() => {
         const checkQuery = async () => {
             try {
-                // setIsLoading(true);
+                setIsLoading(true);
                 let data = await axios.post('/resetpassword', {
                     tk: query.get("tk")
                 })
@@ -30,10 +32,10 @@ function ForgotPasswordReset() {
                 } else {
                     setLinkExpires(true);
                 }
-                console.log(userData)
-                // setIsLoading(false);
+                // console.log(userData)
+                setIsLoading(false);
             } catch (error) {
-                // setIsLoading(false);
+                setIsLoading(false);
                 console.log(error)
             }
         }
@@ -62,7 +64,7 @@ function ForgotPasswordReset() {
         onSubmit: (values) => {
             const changePassword = async () => {
                 try {
-                    // setIsLoading(true);
+                    setIsLoading(true);
                     await axios.post('/changepassword', {
                         userid: userData._id,
                         password: values.password
@@ -71,66 +73,70 @@ function ForgotPasswordReset() {
                     setLinkExpires(true);
                     window.alert('Password changed successfully!');
                     history.push('/login')
-                    // setIsLoading(false);
+                    setIsLoading(false);
                 } catch (error) {
-                    // setIsLoading(false);
+                    setIsLoading(false);
                     console.log(error);
                 }
             }
             changePassword();
-
-
         }
     })
 
     return (
-        <div className="container login-container">
-            <div className="row register-row">
-                <div className="col-lg-8 text-center">
-                    <div className="row register-row-container">
-                        <div className="col-4 bg-register">
-                            <Sidecontent />
+        <>
+            {
+                isLoading ? <Loading /> : (
+                    <div className="container login-container">
+                        <div className="row register-row">
+                            <div className="col-lg-8 text-center">
+                                <div className="row register-row-container">
+                                    <div className="col-4 bg-register">
+                                        <Sidecontent />
+                                    </div>
+                                    <div className="col-md-8 register-form-container">
+                                        {
+                                            linkExpires ? <EmailLinkExpires /> : (
+                                                resetPassword ? <ConfirmResetPassword change={setResetPassword} /> : (
+                                                    <div className="register-form p-3">
+                                                        <div className="register-company">
+                                                            Reset your BookMyTrip Password!
+                                                        </div>
+                                                        <p className="text-center text-muted mt-2 mb-4">Associated with Email ID <b>{userData.email}</b></p>
+                                                        <form onSubmit={formik.handleSubmit}>
+                                                            <div className="password-register-form-container mb-3">
+                                                                <label className="text-muted label-text" htmlFor='password'>
+                                                                    New Password
+                                                                </label>{
+                                                                    formik.errors.password ? <span className="errors">{formik.errors.password}</span> : null
+                                                                }
+                                                                <input type="password" value={formik.values.password} onChange={formik.handleChange} className="password-register-form form-control" id="password" name="password" />
+                                                            </div>
+                                                            <div className="confirm-password-form-container">
+                                                                <label className="text-muted label-text" htmlFor='confirmpassword'>
+                                                                    Re-enter new password
+                                                                </label>{
+                                                                    formik.errors.confirmpassword ? <span className="errors">{formik.errors.confirmpassword}</span> : null
+                                                                }
+                                                                <input type="password" value={formik.values.confirmpassword} onChange={formik.handleChange} className="confirmpassword-form form-control" id="confirmpassword" name="confirmpassword" />
+                                                            </div>
+                                                            <div className="mt-3">
+                                                                <input type="submit" value="CONTINUE" className="btn register-btn" />
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                )
+                                            )
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-md-8 register-form-container">
-                            {
-                                linkExpires ? <EmailLinkExpires /> : (
-                                    resetPassword ? <ConfirmResetPassword change={setResetPassword} /> : (
-                                        <div className="register-form p-3">
-                                            <div className="register-company">
-                                                Reset your BookMyTrip Password!
-                                            </div>
-                                            <p className="text-center text-muted mt-2 mb-4">Associated with Email ID <b>{userData.email}</b></p>
-                                            <form onSubmit={formik.handleSubmit}>
-                                                <div className="password-register-form-container mb-3">
-                                                    <label className="text-muted label-text" htmlFor='password'>
-                                                        New Password
-                                                    </label>{
-                                                        formik.errors.password ? <span className="errors">{formik.errors.password}</span> : null
-                                                    }
-                                                    <input type="password" value={formik.values.password} onChange={formik.handleChange} className="password-register-form form-control" id="password" name="password" />
-                                                </div>
-                                                <div className="confirm-password-form-container">
-                                                    <label className="text-muted label-text" htmlFor='confirmpassword'>
-                                                        Re-enter new password
-                                                    </label>{
-                                                        formik.errors.confirmpassword ? <span className="errors">{formik.errors.confirmpassword}</span> : null
-                                                    }
-                                                    <input type="password" value={formik.values.confirmpassword} onChange={formik.handleChange} className="confirmpassword-form form-control" id="confirmpassword" name="confirmpassword" />
-                                                </div>
-                                                <div className="mt-3">
-                                                    <input type="submit" value="CONTINUE" className="btn register-btn" />
-                                                </div>
-                                            </form>
-                                        </div>
-                                    )
-                                )
+                    </div >
+                )
+            }
+        </>
 
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div >
     )
 }
 

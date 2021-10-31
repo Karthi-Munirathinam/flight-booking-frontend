@@ -7,6 +7,7 @@ import Payment from './Payment';
 import { useLocation } from 'react-router-dom';
 import axios from '../Connection';
 import Randomstring from 'randomstring';
+import Loading from '../Loading';
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -19,6 +20,7 @@ function BookingPage() {
     const [airports, setAirports] = useState([]);
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const queryDetails = {
         from: query.get('from'),
         to: query.get('to'),
@@ -33,20 +35,25 @@ function BookingPage() {
     useEffect(() => {
         const getFlightDetails = async () => {
             try {
+                setIsLoading(true)
                 let flightDetailsThruFno = await axios.post('/flightdetails', {
                     flightno: query.get('fno')
                 })
                 setFlightsData([...flightDetailsThruFno.data.flightdetails])
-                // console.log(...flightDetailsThruFno.data.flightdetails)
+                setIsLoading(false);
             } catch (error) {
+                setIsLoading(false);
                 console.log(error)
             }
         }
         const getAirports = async () => {
             try {
+                setIsLoading(true)
                 let airportdata = await axios.get('/airports')
                 setAirports([...airportdata.data.allairports])
+                setIsLoading(false);
             } catch (error) {
+                setIsLoading(false);
                 console.log(error)
             }
         }
@@ -73,51 +80,40 @@ function BookingPage() {
             setPay(true);
         }
     }
-    // const previousStep = () => {
-    //     if (currentStep > 0) {
-    //         SetCurrentStep(currentStep - 1)
-    //     }
-    // }
+
     return (
         <>
-            <div className='container-fluid stepper-container'>
-                <div className='row'>
-                    <div className='col-12'>
-                        <BookingStep steps={steps} currentStep={currentStep} />
-                    </div>
-                </div>
-            </div>
-            <div className='container-lg'>
-                <div className='row'>
-                    {
-                        pay ? (<div className='col-12'>
-                            <Payment flightsData={flightsData[0]} queryDetails={queryDetails} pnr={pnrNumber} />
-                        </div>) : (
-                            <>
-                                {/* <div className='col-md-12'> */}
+            {
+                isLoading ? <Loading /> : (
+                    <>
+                        <div className='container-fluid stepper-container'>
+                            <div className='row'>
+                                <div className='col-12'>
+                                    <BookingStep steps={steps} currentStep={currentStep} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='container-lg'>
+                            <div className='row'>
                                 {
-                                    currentStep === 0 ? <BookingReview flightsData={flightsData[0]} queryDetails={queryDetails} fromAirport={fromAirport} toAirport={toAirport} currentStep={currentStep} nextStep={nextStep} setPhone={setPhone} setEmail={setEmail} /> : (
-                                        currentStep === 1 ? <BookingTravellerDetails flightsData={flightsData[0]} queryDetails={queryDetails} fromAirport={fromAirport} toAirport={toAirport} currentStep={currentStep} nextStep={nextStep} phone={phone} email={email} pnr={pnrNumber} /> : null
+                                    pay ? (<div className='col-12'>
+                                        <Payment flightsData={flightsData[0]} queryDetails={queryDetails} pnr={pnrNumber} />
+                                    </div>) : (
+                                        <>
+                                            {/* <div className='col-md-12'> */}
+                                            {
+                                                currentStep === 0 ? <BookingReview flightsData={flightsData[0]} queryDetails={queryDetails} fromAirport={fromAirport} toAirport={toAirport} currentStep={currentStep} nextStep={nextStep} setPhone={setPhone} setEmail={setEmail} /> : (
+                                                    currentStep === 1 ? <BookingTravellerDetails flightsData={flightsData[0]} queryDetails={queryDetails} fromAirport={fromAirport} toAirport={toAirport} currentStep={currentStep} nextStep={nextStep} phone={phone} email={email} pnr={pnrNumber} /> : null
+                                                )
+                                            }
+                                        </>
                                     )
                                 }
-                                {/* </div> */}
-                                {/* <div className='col-md-4'>
-                                    {
-                                        currentStep > 1 ? null : (<>
-                                            <FareSummary flightsData={flightsData[0]} queryDetails={queryDetails} />
-                                            <div className='row mt-4'>
-                                                <button className='col-12 btn btn-danger' onClick={nextStep}>{currentStep === 0 ? 'Continue' : 'Pay Securely'}</button>
-                                            </div>
-                                        </>
-                                        )
-                                    }
-                                </div> */}
-                            </>
-                        )
-                    }
-
-                </div>
-            </div>
+                            </div>
+                        </div>
+                    </>
+                )
+            }
         </>
     )
 }

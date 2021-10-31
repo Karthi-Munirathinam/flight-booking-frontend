@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Navbar.css";
 // import IconButton from "@mui/material/IconButton";
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -6,7 +6,21 @@ import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ signedIn, setSignedIn }) {
+  const handlelogout = () => {
+    let lout = window.confirm('Are you sure to Log out ?')
+    if (lout) {
+      window.localStorage.removeItem("app-token");
+      setSignedIn(false)
+    }
+  }
+  useEffect(() => {
+    let token = window.localStorage.getItem("app-token");
+    if (token) {
+      setSignedIn(true)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
     <div className="container-fluid navbar-container">
       <div className="nav-wrapper">
@@ -16,21 +30,36 @@ function Navbar() {
             <span className="brand-my">My</span>Trip
           </Link>
         </div>
-        <Link to='/login' style={{ textDecoration: 'none', color: '#ff934f' }}>
+
+        <div className="profile-container">
           <div className="profile">
-            {/* <span>
-              <IconButton aria-label="login" size="large">
-                <AccountCircleIcon fontSize="inherit" />
-              </IconButton>
-            </span> */}
-            <span className="avatar">
-              <Avatar
-                src="/broken-image.jpg"
-                sx={{ bgcolor: deepOrange["A200"], color: deepOrange[100] }}
-              /></span>
-            <span className="login-register">Login/Register</span>
+
+            {
+              signedIn ? (
+                <div>
+                  <Link to='/mybookings' style={{ textDecoration: 'none', color: '#ff934f' }}>
+                    <span className="login-register">My Bookings</span>
+                  </Link>
+                  <button className="logout-btn" onClick={handlelogout}>
+                    <span className="login-register">Logout</span>
+                  </button>
+                </div>
+              ) : (<>
+                <span className="avatar">
+                  <Avatar
+                    src="/broken-image.jpg"
+                    sx={{ bgcolor: deepOrange["A200"], color: deepOrange[100] }}
+                  />
+                </span>
+                <Link to='/login' style={{ textDecoration: 'none', color: '#ff934f' }}>
+                  <span className="login-register">Login/Register</span>
+                </Link>
+              </>)
+            }
           </div>
-        </Link>
+
+        </div>
+
       </div>
     </div>
   );

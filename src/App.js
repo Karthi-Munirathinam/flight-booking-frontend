@@ -15,15 +15,18 @@ import EmailVerified from "./components/SignIN_SignUP_components/EmailVerified";
 import BookingPage from "./components/Booking_components/BookingPage";
 import Footer from "./components/Footer";
 import Ticket from "./components/Ticket";
+import { useState } from "react";
+import MyBooking from "./components/MyBooking";
 
 function App() {
+  const [signedIn, setSignedIn] = useState(false);
   return (
     <Router>
       <>
-        <Navbar />
+        <Navbar signedIn={signedIn} setSignedIn={setSignedIn} />
         <Switch>
           <Route path='/login' exact>
-            <Login />
+            <Login setSignedIn={setSignedIn} />
           </Route>
           <Route path='/register' exact>
             <Register />
@@ -46,8 +49,11 @@ function App() {
           <Route path='/ticket' exact>
             <Ticket />
           </Route>
+          <Route path='/mybookings' exact>
+            <MyBooking />
+          </Route>
           <Route path='/'>
-            <Search />
+            <Search setSignedIn={setSignedIn} />
           </Route>
         </Switch>
         <Footer />

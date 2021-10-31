@@ -31,5 +31,7 @@
   .ticket-left {
     border-right: none;
     border-bottom: 2px dashed #666;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 }
