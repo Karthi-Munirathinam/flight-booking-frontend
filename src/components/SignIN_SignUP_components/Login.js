@@ -26,6 +26,8 @@ function Login({ setSignedIn }) {
             let errors = {};
             if (!values.email) {
                 errors.email = "Required"
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid email address';
             }
             if (!values.password) {
                 errors.password = "Required"
@@ -74,7 +76,7 @@ function Login({ setSignedIn }) {
                                         <form onSubmit={formik.handleSubmit}>
                                             <div className="col-12 email-form-container">
                                                 <label className="text-muted label-text" htmlFor='email'>
-                                                    Mobile No. / Email
+                                                    Email
                                                 </label>{
                                                     formik.errors.email ? <span className="errors">{formik.errors.email}</span> : null
                                                 }
